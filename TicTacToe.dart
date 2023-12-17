@@ -93,7 +93,28 @@ class TicTacToe {
   }
 }
 
+
+bool playAgain() {
+  while (true) {
+    stdout.write('Do you want to play again? (y/n): ');
+    String input = stdin.readLineSync()?.toLowerCase() ?? '';
+    if (input == 'y') {
+      return true;
+    } else if (input == 'n') {
+      return false;
+    } else {
+      print('Invalid input. Please enter \'y\' or \'n\'.');
+    }
+  }
+}
+
 void main() {
   TicTacToe game = TicTacToe();
   game.playGame();
+
+  if (playAgain()) {
+    main(); // Restart the game
+  } else {
+    print('Thanks for playing!');
+  }
 }
